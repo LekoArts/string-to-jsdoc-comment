@@ -67,6 +67,22 @@ import Layout from '../layouts/Layout.astro'
     --color-box-bg: #e5e8eb;
     --color-textarea-bg: #f9fafc;
     --color-textarea-text: #111828;
+    --color-textarea-border: #dbe1ea;
+    --color-textarea-shadow: rgba(219, 225, 234, 0.25);
+
+    --shadow-color: 221deg 9% 62%;
+    --shadow-elevation-low: 0px 0.5px 0.6px hsl(var(--shadow-color) / 0.34),
+      0px 0.8px 0.9px -1.2px hsl(var(--shadow-color) / 0.34), 0px 2px 2.3px -2.5px hsl(var(--shadow-color) / 0.34);
+    --shadow-elevation-medium: 0px 0.5px 0.6px hsl(var(--shadow-color) / 0.36),
+      0px 1.6px 1.8px -0.8px hsl(var(--shadow-color) / 0.36), 0px 4.1px 4.6px -1.7px hsl(var(--shadow-color) / 0.36),
+      0px 9.9px 11.1px -2.5px hsl(var(--shadow-color) / 0.36);
+    --shadow-elevation-high: 0px 0.5px 0.6px hsl(var(--shadow-color) / 0.34),
+      0px 2.9px 3.3px -0.4px hsl(var(--shadow-color) / 0.34), 0px 5.4px 6.1px -0.7px hsl(var(--shadow-color) / 0.34),
+      0px 8.8px 9.9px -1.1px hsl(var(--shadow-color) / 0.34),
+      -0.1px 14.1px 15.9px -1.4px hsl(var(--shadow-color) / 0.34),
+      -0.1px 22px 24.8px -1.8px hsl(var(--shadow-color) / 0.34),
+      -0.1px 33.5px 37.7px -2.1px hsl(var(--shadow-color) / 0.34),
+      -0.2px 49.3px 55.5px -2.5px hsl(var(--shadow-color) / 0.34);
   }
 
   main {
@@ -117,6 +133,7 @@ import Layout from '../layouts/Layout.astro'
     background: var(--color-box-bg);
     border-radius: 0.75rem;
     padding: 1rem 1.25rem;
+    box-shadow: var(--shadow-elevation-medium);
   }
 
   .code-header {
@@ -142,8 +159,8 @@ import Layout from '../layouts/Layout.astro'
     min-height: 14rem;
     appearance: none;
     resize: vertical;
-    border: none;
-    padding: 0.25rem;
+    border: 2px solid var(--color-textarea-border);
+    padding: 0.5rem;
     box-sizing: border-box;
     background: var(--color-textarea-bg);
     color: var(--color-textarea-text);
@@ -151,6 +168,7 @@ import Layout from '../layouts/Layout.astro'
     border-radius: 0.5rem;
     field-sizing: content;
     resize: none;
+    box-shadow: 0px 0px 20px 10px var(--color-textarea-shadow) inset;
   }
 
   #button-copy {
@@ -158,10 +176,14 @@ import Layout from '../layouts/Layout.astro'
     color: white;
     border: none;
     border-radius: 0.5rem;
-    background: #2b7fff;
+    background: linear-gradient(90deg, #1f79ff, #3586ff);
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
+    box-shadow:
+      0 1px 0 0 #093d8b,
+      0 -1px 0 0 #abcdff,
+      var(--shadow-elevation-low);
   }
 
   #button-copy:hover {
@@ -196,6 +218,10 @@ import Layout from '../layouts/Layout.astro'
       --color-box-bg: #2d3748;
       --color-textarea-bg: #111828;
       --color-textarea-text: #e2e8f0;
+      --color-textarea-border: #414c5f;
+      --color-textarea-shadow: rgba(65, 76, 95, 0.25);
+
+      --shadow-color: 220deg 40% 4%;
     }
   }
 </style>
