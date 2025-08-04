@@ -3,225 +3,226 @@ import Layout from '../layouts/Layout.astro'
 ---
 
 <Layout>
-  <main>
-    <h1 class="text-center">String to JSDoc comment</h1>
-    <p class="text-center prose">
-      Copy & paste code to JSDoc <code>@example</code> blocks with this little online helper tool ☺️
-    </p>
-    <div class="input-output-wrapper">
-      <div class="input-wrapper">
-        <div class="code-header">
-          <label for="string-input">Input</label>
-        </div>
-        <textarea class="custom-textarea" name="string-input" id="string-input">Hello World!</textarea>
-      </div>
-      <div class="output-wrapper">
-        <div class="code-header">
-          <label for="jsdoc-output">Output</label>
-          <button id="button-copy" aria-label="Copy output to clipboard">Copy</button>
-        </div>
-        <textarea class="custom-textarea" id="jsdoc-output" name="jsdoc-output" readonly></textarea>
-      </div>
-    </div>
-  </main>
-  <footer>
-    <a class="text-link" href="https://github.com/LekoArts/string-to-jsdoc-comment">GitHub</a> ・ <a
-      class="text-link"
-      href="https://www.lekoarts.de/?utm_source=string-to-jsdoc-comment">Author</a
-    >
-  </footer>
+	<main>
+		<h1 class="text-center">String to JSDoc comment</h1>
+		<p class="text-center prose">
+			Copy & paste code to JSDoc <code>@example</code> blocks with this little online helper tool ☺️
+		</p>
+		<div class="input-output-wrapper">
+			<div class="input-wrapper">
+				<div class="code-header">
+					<label for="string-input">Input</label>
+				</div>
+				<textarea class="custom-textarea" name="string-input" id="string-input">Hello World!</textarea>
+			</div>
+			<div class="output-wrapper">
+				<div class="code-header">
+					<label for="jsdoc-output">Output</label>
+					<button id="button-copy" aria-label="Copy output to clipboard">Copy</button>
+				</div>
+				<textarea class="custom-textarea" id="jsdoc-output" name="jsdoc-output" readonly></textarea>
+			</div>
+		</div>
+	</main>
+	<footer>
+		<a class="text-link" href="https://github.com/LekoArts/string-to-jsdoc-comment">GitHub</a> ・ <a
+			class="text-link"
+			href="https://www.lekoarts.de/?utm_source=string-to-jsdoc-comment">Author</a
+		>
+	</footer>
 </Layout>
 
 <script>
-  import { stringToJsDocComment } from '../stringToJsdocComment'
+	import { stringToJsDocComment } from '../stringToJsdocComment'
 
-  const stringInput = document.getElementById('string-input')
-  const jsdocOutput = document.getElementById('jsdoc-output')
-  const buttonCopy = document.getElementById('button-copy')
+	const stringInput = document.getElementById('string-input') as HTMLInputElement
+	const jsdocOutput = document.getElementById('jsdoc-output')
+	const buttonCopy = document.getElementById('button-copy')
 
-  async function copyToClipboard(text: string) {
-    try {
-      await navigator.clipboard.writeText(text)
-    } catch (error) {
-      console.error('Failed to copy:', error.message)
-    }
-  }
+	async function copyToClipboard(text: string) {
+		try {
+			await navigator.clipboard.writeText(text)
+		}
+ catch (error: any) {
+			console.error('Failed to copy:', error.message)
+		}
+	}
 
-  jsdocOutput!.innerHTML = stringToJsDocComment(stringInput!.value)
+	jsdocOutput!.innerHTML = stringToJsDocComment(stringInput!.value)
 
-  stringInput!.addEventListener('input', () => {
-    jsdocOutput!.innerHTML = stringToJsDocComment(stringInput!.value)
-  })
+	stringInput!.addEventListener('input', () => {
+		jsdocOutput!.innerHTML = stringToJsDocComment(stringInput!.value)
+	})
 
-  buttonCopy!.addEventListener('click', () => {
-    copyToClipboard(jsdocOutput!.textContent ?? '')
-  })
+	buttonCopy!.addEventListener('click', () => {
+		copyToClipboard(jsdocOutput!.textContent ?? '')
+	})
 </script>
 
 <style>
-  :root {
-    --color-heading: black;
-    --color-bg: #f9fafc;
-    --color-prose: #4a5565;
-    --color-hint: #f3f4f6;
-    --color-box-bg: #e5e8eb;
-    --color-textarea-bg: #f9fafc;
-    --color-textarea-text: #111828;
-    --color-textarea-border: #dbe1ea;
-    --color-textarea-shadow: rgba(219, 225, 234, 0.25);
+	:root {
+		--color-heading: black;
+		--color-bg: #f9fafc;
+		--color-prose: #4a5565;
+		--color-hint: #f3f4f6;
+		--color-box-bg: #e5e8eb;
+		--color-textarea-bg: #f9fafc;
+		--color-textarea-text: #111828;
+		--color-textarea-border: #dbe1ea;
+		--color-textarea-shadow: rgba(219, 225, 234, 0.25);
 
-    --shadow-color: 221deg 9% 62%;
-    --shadow-elevation-low: 0px 0.5px 0.6px hsl(var(--shadow-color) / 0.34),
-      0px 0.8px 0.9px -1.2px hsl(var(--shadow-color) / 0.34), 0px 2px 2.3px -2.5px hsl(var(--shadow-color) / 0.34);
-    --shadow-elevation-medium: 0px 0.5px 0.6px hsl(var(--shadow-color) / 0.36),
-      0px 1.6px 1.8px -0.8px hsl(var(--shadow-color) / 0.36), 0px 4.1px 4.6px -1.7px hsl(var(--shadow-color) / 0.36),
-      0px 9.9px 11.1px -2.5px hsl(var(--shadow-color) / 0.36);
-    --shadow-elevation-high: 0px 0.5px 0.6px hsl(var(--shadow-color) / 0.34),
-      0px 2.9px 3.3px -0.4px hsl(var(--shadow-color) / 0.34), 0px 5.4px 6.1px -0.7px hsl(var(--shadow-color) / 0.34),
-      0px 8.8px 9.9px -1.1px hsl(var(--shadow-color) / 0.34),
-      -0.1px 14.1px 15.9px -1.4px hsl(var(--shadow-color) / 0.34),
-      -0.1px 22px 24.8px -1.8px hsl(var(--shadow-color) / 0.34),
-      -0.1px 33.5px 37.7px -2.1px hsl(var(--shadow-color) / 0.34),
-      -0.2px 49.3px 55.5px -2.5px hsl(var(--shadow-color) / 0.34);
-  }
+		--shadow-color: 221deg 9% 62%;
+		--shadow-elevation-low: 0px 0.5px 0.6px hsl(var(--shadow-color) / 0.34),
+			0px 0.8px 0.9px -1.2px hsl(var(--shadow-color) / 0.34), 0px 2px 2.3px -2.5px hsl(var(--shadow-color) / 0.34);
+		--shadow-elevation-medium: 0px 0.5px 0.6px hsl(var(--shadow-color) / 0.36),
+			0px 1.6px 1.8px -0.8px hsl(var(--shadow-color) / 0.36), 0px 4.1px 4.6px -1.7px hsl(var(--shadow-color) / 0.36),
+			0px 9.9px 11.1px -2.5px hsl(var(--shadow-color) / 0.36);
+		--shadow-elevation-high: 0px 0.5px 0.6px hsl(var(--shadow-color) / 0.34),
+			0px 2.9px 3.3px -0.4px hsl(var(--shadow-color) / 0.34), 0px 5.4px 6.1px -0.7px hsl(var(--shadow-color) / 0.34),
+			0px 8.8px 9.9px -1.1px hsl(var(--shadow-color) / 0.34),
+			-0.1px 14.1px 15.9px -1.4px hsl(var(--shadow-color) / 0.34),
+			-0.1px 22px 24.8px -1.8px hsl(var(--shadow-color) / 0.34),
+			-0.1px 33.5px 37.7px -2.1px hsl(var(--shadow-color) / 0.34),
+			-0.2px 49.3px 55.5px -2.5px hsl(var(--shadow-color) / 0.34);
+	}
 
-  main {
-    padding: 2rem 4rem;
-    margin: 0 auto;
-  }
+	main {
+		padding: 2rem 4rem;
+		margin: 0 auto;
+	}
 
-  body {
-    background: var(--color-bg);
-  }
+	body {
+		background: var(--color-bg);
+	}
 
-  h1 {
-    line-height: 1.2;
-    color: var(--color-heading);
-  }
+	h1 {
+		line-height: 1.2;
+		color: var(--color-heading);
+	}
 
-  .text-center {
-    text-align: center;
-  }
+	.text-center {
+		text-align: center;
+	}
 
-  .prose {
-    color: var(--color-prose);
-  }
+	.prose {
+		color: var(--color-prose);
+	}
 
-  p {
-    font-size: 1.2rem;
-  }
+	p {
+		font-size: 1.2rem;
+	}
 
-  code {
-    background-color: var(--color-hint);
-    padding: 3px 5px;
-    border-radius: 5px;
-  }
+	code {
+		background-color: var(--color-hint);
+		padding: 3px 5px;
+		border-radius: 5px;
+	}
 
-  .input-output-wrapper {
-    margin-top: 4rem;
-    max-width: 70rem;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
+	.input-output-wrapper {
+		margin-top: 4rem;
+		max-width: 70rem;
+		width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 2rem;
+	}
 
-  .input-wrapper,
-  .output-wrapper {
-    background: var(--color-box-bg);
-    border-radius: 0.75rem;
-    padding: 1rem 1.25rem;
-    box-shadow: var(--shadow-elevation-medium);
-  }
+	.input-wrapper,
+	.output-wrapper {
+		background: var(--color-box-bg);
+		border-radius: 0.75rem;
+		padding: 1rem 1.25rem;
+		box-shadow: var(--shadow-elevation-medium);
+	}
 
-  .code-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-    min-height: 3rem;
-  }
+	.code-header {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 1rem;
+		min-height: 3rem;
+	}
 
-  .code-header label {
-    margin: 0;
-    line-height: 1.5;
-    color: var(--color-heading);
-    font-weight: 500;
-    font-size: 1.15rem;
-    letter-spacing: 0.1rem;
-  }
+	.code-header label {
+		margin: 0;
+		line-height: 1.5;
+		color: var(--color-heading);
+		font-weight: 500;
+		font-size: 1.15rem;
+		letter-spacing: 0.1rem;
+	}
 
-  .custom-textarea {
-    width: 100%;
-    min-height: 14rem;
-    appearance: none;
-    resize: vertical;
-    border: 2px solid var(--color-textarea-border);
-    padding: 0.5rem;
-    box-sizing: border-box;
-    background: var(--color-textarea-bg);
-    color: var(--color-textarea-text);
-    font-size: 1rem;
-    border-radius: 0.5rem;
-    field-sizing: content;
-    resize: none;
-    box-shadow: 0px 0px 20px 10px var(--color-textarea-shadow) inset;
-  }
+	.custom-textarea {
+		width: 100%;
+		min-height: 14rem;
+		appearance: none;
+		resize: vertical;
+		border: 2px solid var(--color-textarea-border);
+		padding: 0.5rem;
+		box-sizing: border-box;
+		background: var(--color-textarea-bg);
+		color: var(--color-textarea-text);
+		font-size: 1rem;
+		border-radius: 0.5rem;
+		field-sizing: content;
+		resize: none;
+		box-shadow: 0px 0px 20px 10px var(--color-textarea-shadow) inset;
+	}
 
-  #button-copy {
-    padding: 0.5rem 1rem;
-    color: white;
-    border: none;
-    border-radius: 0.5rem;
-    background: linear-gradient(90deg, #1f79ff, #3586ff);
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow:
-      0 1px 0 0 #093d8b,
-      0 -1px 0 0 #abcdff,
-      var(--shadow-elevation-low);
-  }
+	#button-copy {
+		padding: 0.5rem 1rem;
+		color: white;
+		border: none;
+		border-radius: 0.5rem;
+		background: linear-gradient(90deg, #1f79ff, #3586ff);
+		font-size: 1rem;
+		font-weight: 600;
+		cursor: pointer;
+		box-shadow:
+			0 1px 0 0 #093d8b,
+			0 -1px 0 0 #abcdff,
+			var(--shadow-elevation-low);
+	}
 
-  #button-copy:hover {
-    background: #2775eb;
-  }
+	#button-copy:hover {
+		background: #2775eb;
+	}
 
-  .text-link {
-    color: var(--color-prose);
-    text-decoration: none;
-  }
+	.text-link {
+		color: var(--color-prose);
+		text-decoration: none;
+	}
 
-  .text-link:hover {
-    text-decoration: underline;
-  }
+	.text-link:hover {
+		text-decoration: underline;
+	}
 
-  footer {
-    padding: 4rem 0;
-    text-align: center;
-  }
+	footer {
+		padding: 4rem 0;
+		text-align: center;
+	}
 
-  @media screen and (min-width: 768px) {
-    .input-output-wrapper {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --color-heading: white;
-      --color-bg: #1a202c;
-      --color-prose: #a0aec0;
-      --color-hint: #2d3748;
-      --color-box-bg: #2d3748;
-      --color-textarea-bg: #111828;
-      --color-textarea-text: #e2e8f0;
-      --color-textarea-border: #414c5f;
-      --color-textarea-shadow: rgba(65, 76, 95, 0.25);
+	@media screen and (min-width: 768px) {
+		.input-output-wrapper {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+	@media (prefers-color-scheme: dark) {
+		:root {
+			--color-heading: white;
+			--color-bg: #1a202c;
+			--color-prose: #a0aec0;
+			--color-hint: #2d3748;
+			--color-box-bg: #2d3748;
+			--color-textarea-bg: #111828;
+			--color-textarea-text: #e2e8f0;
+			--color-textarea-border: #414c5f;
+			--color-textarea-shadow: rgba(65, 76, 95, 0.25);
 
-      --shadow-color: 220deg 40% 4%;
-    }
-  }
+			--shadow-color: 220deg 40% 4%;
+		}
+	}
 </style>
