@@ -42,8 +42,7 @@ import Layout from '../layouts/Layout.astro'
 	async function copyToClipboard(text: string) {
 		try {
 			await navigator.clipboard.writeText(text)
-		}
- catch (error: any) {
+		} catch (error: any) {
 			console.error('Failed to copy:', error.message)
 		}
 	}
@@ -72,14 +71,15 @@ import Layout from '../layouts/Layout.astro'
 		--color-textarea-shadow: rgba(219, 225, 234, 0.25);
 
 		--shadow-color: 221deg 9% 62%;
-		--shadow-elevation-low: 0px 0.5px 0.6px hsl(var(--shadow-color) / 0.34),
-			0px 0.8px 0.9px -1.2px hsl(var(--shadow-color) / 0.34), 0px 2px 2.3px -2.5px hsl(var(--shadow-color) / 0.34);
-		--shadow-elevation-medium: 0px 0.5px 0.6px hsl(var(--shadow-color) / 0.36),
-			0px 1.6px 1.8px -0.8px hsl(var(--shadow-color) / 0.36), 0px 4.1px 4.6px -1.7px hsl(var(--shadow-color) / 0.36),
-			0px 9.9px 11.1px -2.5px hsl(var(--shadow-color) / 0.36);
-		--shadow-elevation-high: 0px 0.5px 0.6px hsl(var(--shadow-color) / 0.34),
-			0px 2.9px 3.3px -0.4px hsl(var(--shadow-color) / 0.34), 0px 5.4px 6.1px -0.7px hsl(var(--shadow-color) / 0.34),
-			0px 8.8px 9.9px -1.1px hsl(var(--shadow-color) / 0.34),
+		--shadow-elevation-low:
+			0px 0.5px 0.6px hsl(var(--shadow-color) / 0.34), 0px 0.8px 0.9px -1.2px hsl(var(--shadow-color) / 0.34),
+			0px 2px 2.3px -2.5px hsl(var(--shadow-color) / 0.34);
+		--shadow-elevation-medium:
+			0px 0.5px 0.6px hsl(var(--shadow-color) / 0.36), 0px 1.6px 1.8px -0.8px hsl(var(--shadow-color) / 0.36),
+			0px 4.1px 4.6px -1.7px hsl(var(--shadow-color) / 0.36), 0px 9.9px 11.1px -2.5px hsl(var(--shadow-color) / 0.36);
+		--shadow-elevation-high:
+			0px 0.5px 0.6px hsl(var(--shadow-color) / 0.34), 0px 2.9px 3.3px -0.4px hsl(var(--shadow-color) / 0.34),
+			0px 5.4px 6.1px -0.7px hsl(var(--shadow-color) / 0.34), 0px 8.8px 9.9px -1.1px hsl(var(--shadow-color) / 0.34),
 			-0.1px 14.1px 15.9px -1.4px hsl(var(--shadow-color) / 0.34),
 			-0.1px 22px 24.8px -1.8px hsl(var(--shadow-color) / 0.34),
 			-0.1px 33.5px 37.7px -2.1px hsl(var(--shadow-color) / 0.34),
